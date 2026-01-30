@@ -388,8 +388,41 @@ async def search_products(
         raise HTTPException(status_code=500, detail=str(e))
 
 @api_router.post("/products/{product_id}/shipping")
-async def calculate_shipping(product_id: str, shipping_req: ShippingRequest):
+async def calculate_shipping(product_id: str, shipping_req: ShippingRequest, use_mock: bool = Query(default=True)):
     """Calculate shipping cost for a product"""
+    
+    # Mock data for demonstration
+    if use_mock:
+        import random
+        free_shipping = random.choice([True, False])
+        
+        mock_options = [
+            {
+                "name": "Padrão",
+                "cost": 0 if free_shipping else random.uniform(15.90, 45.90),
+                "currency": "BRL",
+                "estimated_delivery_time": "2026-02-05",
+                "shipping_method_id": "100009"
+            }
+        ]
+        
+        if not free_shipping:
+            mock_options.append({
+                "name": "Expresso",
+                "cost": random.uniform(50.00, 89.90),
+                "currency": "BRL",
+                "estimated_delivery_time": "2026-02-02",
+                "shipping_method_id": "182"
+            })
+        
+        return {
+            "product_id": product_id,
+            "free_shipping": free_shipping,
+            "options": mock_options,
+            "mock_data": True
+        }
+    
+    # Real API call
     try:
         async with httpx.AsyncClient(timeout=30.0) as http_client:
             url = f"https://api.mercadolivre.com.br/items/{product_id}"
@@ -420,7 +453,8 @@ async def calculate_shipping(product_id: str, shipping_req: ShippingRequest):
             return {
                 "product_id": product_id,
                 "free_shipping": item_data.get("shipping", {}).get("free_shipping", False),
-                "options": options
+                "options": options,
+                "mock_data": False
             }
             
     except httpx.HTTPError as e:
