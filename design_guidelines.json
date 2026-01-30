@@ -1,0 +1,150 @@
+{
+  "design_system": {
+    "name": "FrostFind Design System",
+    "archetype": "Swiss Cooling",
+    "theme_strategy": "Light Mode Only (Clean, Clinical, Trustworthy)",
+    "typography": {
+      "font_family": {
+        "heading": ["Outfit", "sans-serif"],
+        "body": ["DM Sans", "sans-serif"],
+        "mono": ["JetBrains Mono", "monospace"]
+      },
+      "weights": {
+        "heading": "700",
+        "subheading": "500",
+        "body": "400"
+      },
+      "scale": {
+        "h1": "text-4xl md:text-6xl tracking-tight font-bold",
+        "h2": "text-3xl md:text-4xl tracking-tight font-semibold",
+        "h3": "text-xl md:text-2xl font-medium",
+        "body": "text-base leading-relaxed",
+        "caption": "text-sm text-muted-foreground"
+      }
+    },
+    "colors": {
+      "palette": {
+        "primary": {
+          "DEFAULT": "#007AFF",
+          "foreground": "#FFFFFF",
+          "description": "Electric Blue - Represents cooling, trust, and energy."
+        },
+        "secondary": {
+          "DEFAULT": "#F1F5F9",
+          "foreground": "#0F172A",
+          "description": "Cool Slate - Backgrounds and secondary actions."
+        },
+        "accent": {
+          "DEFAULT": "#FF3B30",
+          "foreground": "#FFFFFF",
+          "description": "Alert Red - Used strictly for 'Liquidation', 'Sale', and 'Price Drop' badges."
+        },
+        "background": "#FFFFFF",
+        "surface": "#F8FAFC",
+        "border": "#E2E8F0",
+        "text": {
+          "primary": "#0F172A",
+          "secondary": "#64748B"
+        }
+      },
+      "gradients": {
+        "hero": "bg-gradient-to-b from-slate-50 to-white",
+        "card_hover": "hover:bg-slate-50"
+      }
+    },
+    "spacing": {
+      "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+      "section_gap": "py-16 md:py-24",
+      "card_padding": "p-6",
+      "grid_gap": "gap-6 md:gap-8"
+    },
+    "radius": {
+      "default": "rounded-xl",
+      "button": "rounded-full",
+      "card": "rounded-2xl"
+    },
+    "shadows": {
+      "card": "shadow-[0_2px_8px_rgba(0,0,0,0.04)]",
+      "card_hover": "shadow-[0_12px_24px_rgba(0,0,0,0.08)]",
+      "dropdown": "shadow-xl border border-slate-100"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 rounded-full font-medium transition-all active:scale-95",
+      "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80 h-12 px-8 rounded-full font-medium transition-all",
+      "outline": "border-2 border-slate-200 hover:border-primary hover:text-primary h-12 px-8 rounded-full font-medium transition-all"
+    },
+    "cards": {
+      "product": "group relative bg-white border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
+      "feature": "bg-slate-50 p-8 rounded-3xl border border-slate-100"
+    },
+    "inputs": {
+      "search": "h-14 pl-12 pr-4 rounded-full border-2 border-slate-100 bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-lg shadow-sm placeholder:text-slate-400"
+    },
+    "badges": {
+      "sale": "bg-red-50 text-red-600 border border-red-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider",
+      "new": "bg-blue-50 text-blue-600 border border-blue-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider",
+      "refurbished": "bg-amber-50 text-amber-600 border border-amber-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+    }
+  },
+  "layout_strategies": {
+    "search_results": {
+      "type": "grid",
+      "classes": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
+      "description": "Dense grid for maximum scannability. Images top, details bottom."
+    },
+    "dashboard": {
+      "type": "bento",
+      "classes": "grid grid-cols-1 md:grid-cols-12 gap-6",
+      "description": "Asymmetric grid. Hero chart spans 8 cols, alerts span 4 cols."
+    }
+  },
+  "assets": {
+    "images": {
+      "product_placeholders": [
+        {
+          "url": "https://images.pexels.com/photos/1567355/pexels-photo-1567355.jpeg",
+          "alt": "Modern Split Air Conditioner",
+          "category": "split"
+        },
+        {
+          "url": "https://images.pexels.com/photos/24828656/pexels-photo-24828656.jpeg",
+          "alt": "Portable Air Conditioner Unit",
+          "category": "portable"
+        },
+        {
+          "url": "https://images.pexels.com/photos/18725613/pexels-photo-18725613.jpeg",
+          "alt": "Window Air Conditioner",
+          "category": "window"
+        }
+      ],
+      "icons": "Use 'lucide-react' for all UI icons. Use 'Snowflake' for cooling, 'Flame' for heating, 'Truck' for shipping."
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. SETUP: Install 'lucide-react' and 'recharts'. Configure Tailwind with the colors and fonts specified above.",
+    "2. FONTS: Add 'Outfit' and 'DM Sans' via Google Fonts in index.html or CSS import.",
+    "3. LAYOUT: Create a 'Layout' component that enforces the max-width container and consistent padding.",
+    "4. COMPONENTS: Build the 'ProductCard' first. It is the core of the experience. Ensure the 'Refurbished' badge is distinct.",
+    "5. SEARCH: The search bar should be the hero of the home page. Large, centered, inviting.",
+    "6. FILTERS: Use a sidebar on desktop and a Drawer (Shadcn Sheet) on mobile.",
+    "7. CHARTS: Use Recharts for the 'Price History' modal. Keep it simple: Line chart, minimal axes.",
+    "8. MOCK DATA: Create a robust mock data file for products since we don't have a real backend yet. Include 'condition' (new, used, refurbished) fields.",
+    "9. TESTING: Add data-testid to all interactive elements (search input, filter checkboxes, product cards)."
+  ],
+  "universal_guidelines": {
+    "do_not": [
+      "Do not use gradients for text.",
+      "Do not use pure black (#000000).",
+      "Do not make the UI cluttered. White space is luxury.",
+      "Do not use generic 'Loading...' text. Use skeleton screens."
+    ],
+    "must_do": [
+      "Ensure all images have object-cover.",
+      "Use 'truncate' for long product titles.",
+      "Format currency as BRL (R$).",
+      "Show 'Free Shipping' prominently if applicable."
+    ]
+  }
+}
